@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class AmazonExample {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 		System.setProperty("webdriver.chrome.driver","C:\\Users\\welcome\\Downloads\\chromedriver_win32\\chromedriver.exe");
 		//System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 		WebDriver driver= new ChromeDriver(); 
@@ -27,7 +27,17 @@ public class AmazonExample {
 		driver.findElement(By.xpath("//input[@type='submit']")).click();
 		Select dropdown = new Select(driver.findElement(By.id("searchDropdownBox")));
 		dropdown.selectByVisibleText("Electronics");
-		System.out.println("selected");
+		System.out.println("Selcted by visible text");
+		Thread.sleep(2000);
+		
+		dropdown.selectByIndex(8);
+		System.out.println("Selcted by index");
+		Thread.sleep(2000);
+		
+		dropdown.selectByValue("search-alias=electronics");
+		System.out.println("Selcted by value");
+		Thread.sleep(2000);
+	
 		//driver.findElement(By.tagName("//a[@tabindex='21']"));
 		//System.out.println("Todays deal");
 		driver.quit();	
